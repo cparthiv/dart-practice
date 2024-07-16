@@ -1,18 +1,11 @@
-var year = 2024;
-var numbers = [2, 0, 2, 4];
+int fibonacci(int length) {
+  if (length == 0 || length == 1) return length;
+  return fibonacci(length - 1) + fibonacci(length - 2);
+}
 
 void main() {
-  print('Hello, world!');
-
-  if (year >= 2001) {
-    print('21st century');
-  }
-
+  var numbers = List.generate(50, (i) => i);
   for (final number in numbers) {
-    print(number);
-  }
-  while (year < 2030) {
-    year++;
-    print(year);
+    print(number.toString() + ': ' + fibonacci(number).toString());
   }
 }
