@@ -14,6 +14,14 @@ enum Planet {
       planetType == PlanetType.gas || planetType == PlanetType.ice;
 }
 
+mixin Piloted {
+  int astronauts = 1;
+
+  void describeCrew() {
+    print('Number of astronauts: $astronauts');
+  }
+}
+
 void main() {
   final myPlanet = Planet.earth;
   if (!myPlanet.isGiant) {
