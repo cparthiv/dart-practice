@@ -1,27 +1,22 @@
-class Person {
-  String name;
-  DateTime? birthday;
-  int? get birthYear => birthday?.year;
+enum PlanetType { terrestrial, gas, ice }
 
-  Person(this.name, this.birthday) {
-    // Initialization code
-  }
-  Person.born(String name) : this(name, null);
+enum Planet {
+  mercury(planetType: PlanetType.terrestrial, moons: 0, hasRings: false),
+  earth(planetType: PlanetType.terrestrial, moons: 1, hasRings: false);
 
-  void describe() {
-    print('Person: $name');
-    // Workaround for type promotion
-    var birthday = this.birthday;
-    if (birthday != null) {
-      int years = DateTime.now().difference(birthday).inDays ~/ 365;
-      print('Born $birthYear ($years years ago)');
-    } else {
-      print('Not born yet');
-    }
-  }
+  const Planet(
+      {required this.planetType, required this.moons, required this.hasRings});
+
+  final PlanetType planetType;
+  final int moons;
+  final bool hasRings;
+  bool get isGiant =>
+      planetType == PlanetType.gas || planetType == PlanetType.ice;
 }
 
 void main() {
-  var parthiv = Person('Parthiv', DateTime(2009, 2, 14));
-  parthiv.describe();
+  final myPlanet = Planet.earth;
+  if (!myPlanet.isGiant) {
+    print('Your planet is not a "giant planet"');
+  }
 }
